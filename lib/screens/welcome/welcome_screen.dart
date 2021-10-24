@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project_3/screens/second/second_screen.dart';
+import 'package:flutter_project_3/screens/third/third_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key key}) : super(key: key);
@@ -14,72 +16,29 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Hello world"),
-          centerTitle: true,
-        ),
-        body: Container(
-          alignment: Alignment.center,
-          child: Column(
-            children: [
-              Text(
-                "This is a text",
-                style: textStyle,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                      style: buttonStyle,
-                      onPressed: null,
-                      child: Text(
-                        "Button 1",
-                        style: textStyle,
-                      )),
-                  Container(
-                    width: 20,
-                  ),
-                  ElevatedButton(
-                      style: buttonStyle,
-                      onPressed: null,
-                      child: Text(
-                        "Button 2",
-                        style: textStyle,
-                      ))
-                ],
-              ),
-              Text(
-                "This is another text",
-                style: textStyle,
-              ),
-              Text(
-                "This is the other text",
-                style: textStyle,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                      style: buttonStyle,
-                      onPressed: null,
-                      child: Text(
-                        "Button 3",
-                        style: textStyle,
-                      )),
-                  Container(
-                    width: 20,
-                  ),
-                  ElevatedButton(
-                      style: buttonStyle,
-                      onPressed: null,
-                      child: Text(
-                        "Button 4",
-                        style: textStyle,
-                      ))
-                ],
-              ),
-            ],
+      appBar: AppBar(
+        title: Text("Welcome Screen"),
+        centerTitle: true,
+      ),
+      body: Container(
+        alignment: Alignment.center,
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SecondScreen()));
+            },
+            child: Text("Go to second screen"),
           ),
-        ));
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ThirdScreen()));
+            },
+            child: Text("Go to third screen"),
+          ),
+        ]),
+      ),
+    );
   }
 }
