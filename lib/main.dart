@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project_3/screens/second/second_screen.dart';
+import 'package:flutter_project_3/screens/third/third_screen.dart';
 import 'package:flutter_project_3/screens/welcome/welcome_screen.dart';
 
 void main() {
@@ -28,7 +30,10 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: WelcomeScreen(),
-    
+      routes: {
+        SecondScreen.routeName: (ctx) => SecondScreen(),
+        ThirdScreen.routeName: (ctx) => ThirdScreen()
+      },
     );
   }
 }

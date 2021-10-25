@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project_3/screens/welcome/welcome_screen.dart';
 
 class ThirdScreen extends StatelessWidget {
+  static const routeName = "/third";
   const ThirdScreen({Key key}) : super(key: key);
 
   @override
@@ -16,8 +16,7 @@ class ThirdScreen extends StatelessWidget {
         child: ElevatedButton(
           child: Text("Go back"),
           onPressed: () {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => WelcomeScreen()));
+            Navigator.pop(context);
           },
         ),
       ),

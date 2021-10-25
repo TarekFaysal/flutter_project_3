@@ -25,15 +25,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           ElevatedButton(
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SecondScreen()));
+              Navigator.pushNamed(context, SecondScreen.routeName);
             },
             child: Text("Go to second screen"),
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ThirdScreen()));
+              Navigator.pushNamed(context, ThirdScreen.routeName);
             },
             child: Text("Go to third screen"),
           ),

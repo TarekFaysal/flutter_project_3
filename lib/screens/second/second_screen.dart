@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project_3/screens/third/third_screen.dart';
 
 class SecondScreen extends StatelessWidget {
+  static const routeName = "/second";
   const SecondScreen({Key key}) : super(key: key);
 
   @override
@@ -15,8 +16,7 @@ class SecondScreen extends StatelessWidget {
         child: ElevatedButton(
           child: Text("Go to Third Screen"),
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => ThirdScreen()));
+            Navigator.pushNamed(context, ThirdScreen.routeName);
           },
         ),
       ),
