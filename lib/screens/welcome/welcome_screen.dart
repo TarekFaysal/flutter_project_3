@@ -1,7 +1,5 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project_3/model/user.dart';
-import 'package:flutter_project_3/screens/second/second_screen.dart';
-import 'package:flutter_project_3/screens/third/third_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key key}) : super(key: key);
@@ -11,39 +9,76 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-  String firstName2 = "Jihad";
-  String lastName2 = "Hossain";
-  String address = "Kaunia, Barisal";
-
-  TextStyle textStyle = TextStyle(color: Colors.blue, fontSize: 30);
-  ButtonStyle buttonStyle =
-      ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red));
+  TextEditingController emailEditingController = TextEditingController();
+  TextEditingController passwordEditingController = TextEditingController();
+  TextEditingController firstNameEditingController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Welcome Screen"),
         centerTitle: true,
+        title: Text("Login Screen"),
       ),
-      body: Container(
-        alignment: Alignment.center,
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          ElevatedButton(
-            onPressed: () {
-              User user = new User(
-                  firstName: firstName2, lastName: lastName2, address: address);
-              Navigator.pushNamed(context, SecondScreen.routeName,
-                  arguments: user);
-            },
-            child: Text("Go to second screen"),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.all(15),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                TextFormField(
+                  validator: (value) {
+                    if (EmailValidator.validate(value)) {
+                      return null;
+                    } else {
+                      return "Please enter a valid email";
+                    }
+                  },
+                  controller: emailEditingController,
+                  decoration:
+                      InputDecoration(hintText: "Email", labelText: "Email *"),
+                ),
+                TextFormField(
+                  validator: (value) {
+                    if (value.length > 8) {
+                      return null;
+                    } else {
+                      return "Password must be a minimum of 8 characters";
+                    }
+                  },
+                  obscureText: true,
+                  controller: passwordEditingController,
+                  decoration: InputDecoration(
+                      hintText: "Password", labelText: "Password *"),
+                ),
+                //first name
+                TextFormField(
+                  validator: (value) {
+                    if (value.isNotEmpty) {
+                      return null;
+                    } else {
+                      return "Please enter first name";
+                    }
+                  },
+                  obscureText: true,
+                  controller: firstNameEditingController,
+                  decoration: InputDecoration(
+                      hintText: "First Name", labelText: "First Name *"),
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState.validate()) {
+                        String email = emailEditingController.text;
+                        String password = passwordEditingController.text;
+                        print(email + password);
+                      }
+                    },
+                    child: Text("Log In"))
+              ],
+            ),
           ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, ThirdScreen.routeName);
-            },
-            child: Text("Go to third screen"),
-          ),
-        ]),
+        ),
       ),
     );
   }
