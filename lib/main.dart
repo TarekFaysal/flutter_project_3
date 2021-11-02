@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project_3/screens/second/second_screen.dart';
-import 'package:flutter_project_3/screens/third/third_screen.dart';
-import 'package:flutter_project_3/screens/welcome/welcome_screen.dart';
+import 'package:flutter_project_3/screens/create_note/create_note_screen.dart';
+import 'package:flutter_project_3/screens/note_details/note_details_screen.dart';
+import 'package:flutter_project_3/screens/notes/notes_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,10 +30,10 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: WelcomeScreen(),
+      home: NotesScreen(),
       routes: {
-        SecondScreen.routeName: (ctx) => SecondScreen(),
-        ThirdScreen.routeName: (ctx) => ThirdScreen()
+        NoteDetailsScreen.routeName: (ctx) => NoteDetailsScreen(),
+        CreateNoteScreen.routeName: (ctx) => CreateNoteScreen()
       },
     );
   }
