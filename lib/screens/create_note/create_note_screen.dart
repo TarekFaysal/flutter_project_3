@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project_3/model/note.dart';
+import 'package:flutter_project_3/screens/notes/notes_screen.dart';
 
 class CreateNoteScreen extends StatefulWidget {
   static const routeName = "/createNote";
@@ -54,6 +56,14 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
                         String title = titleEditingController.text;
                         String description = descritionEditingController.text;
                         print(title + description);
+                        // add this note to the list
+                        Note note = Note(title, description);
+                        Note.notes.add(note);
+
+                        //go to notescreen
+                        Navigator.pop(context);
+                        Navigator.pushReplacementNamed(
+                            context, NotesScreen.routeName);
                       }
                     },
                     child: Text("Create"))

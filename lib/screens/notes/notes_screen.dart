@@ -4,6 +4,7 @@ import 'package:flutter_project_3/screens/create_note/create_note_screen.dart';
 import 'package:flutter_project_3/screens/note_details/note_details_screen.dart';
 
 class NotesScreen extends StatelessWidget {
+  static const routeName = "/notes";
   const NotesScreen({Key key}) : super(key: key);
 
   @override
@@ -20,7 +21,11 @@ class NotesScreen extends StatelessWidget {
                   arguments: Note.notes[index]);
             },
             title: Text(Note.notes[index].title),
-            subtitle: Text(Note.notes[index].description),
+            subtitle: Text(
+              Note.notes[index].description,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
           );
         },
         itemCount: Note.notes.length,

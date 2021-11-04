@@ -33,7 +33,8 @@ class MyApp extends StatelessWidget {
       home: NotesScreen(),
       routes: {
         NoteDetailsScreen.routeName: (ctx) => NoteDetailsScreen(),
-        CreateNoteScreen.routeName: (ctx) => CreateNoteScreen()
+        CreateNoteScreen.routeName: (ctx) => CreateNoteScreen(),
+        NotesScreen.routeName: (ctx) => NotesScreen()
       },
     );
   }
