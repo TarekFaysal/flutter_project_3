@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_3/model/note.dart';
 import 'package:flutter_project_3/screens/notes/notes_screen.dart';
+import 'dart:math';
 
 class CreateNoteScreen extends StatefulWidget {
   static const routeName = "/createNote";
@@ -13,6 +14,7 @@ class CreateNoteScreen extends StatefulWidget {
 class _CreateNoteScreenState extends State<CreateNoteScreen> {
   TextEditingController titleEditingController = TextEditingController();
   TextEditingController descritionEditingController = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
             child: Column(
               children: [
                 TextFormField(
+                  style: Theme.of(context).textTheme.bodyText1,
                   validator: (value) {
                     if (value.isNotEmpty) {
                       return null;
@@ -39,6 +42,7 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
                       InputDecoration(hintText: "title", labelText: "title *"),
                 ),
                 TextFormField(
+                  style: Theme.of(context).textTheme.bodyText2,
                   validator: (value) {
                     if (value.isNotEmpty) {
                       return null;
@@ -50,14 +54,19 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
                   decoration: InputDecoration(
                       hintText: "description", labelText: "descrition *"),
                 ),
+                SizedBox(
+                  height: 20,
+                ),
                 ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
                         String title = titleEditingController.text;
                         String description = descritionEditingController.text;
                         print(title + description);
+                        var random = new Random();
+                        int id = random.nextInt(10000);
                         // add this note to the list
-                        Note note = Note(title, description);
+                        Note note = Note(id, title, description);
                         Note.notes.add(note);
 
                         //go to notescreen

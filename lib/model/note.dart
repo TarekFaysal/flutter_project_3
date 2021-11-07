@@ -1,12 +1,14 @@
 class Note {
   var title;
   var description;
-  Note(this.title, this.description);
+  var id;
+  Note(this.id, this.title, this.description);
 
   static List<Note> notes = [
-    Note("Shopping List", "1. Chicken, 2. Butter 3. Milk"),
-    Note("Going for a walk", "Today I want to go for a walk in the morning."),
-    Note("Shopping List", "1. Chicken, 2. Butter 3. Milk"),
-    Note("Shopping List", "1. Chicken, 2. Butter 3. Milk"),
+    Note(1, "Shopping List", "1. Chicken, 2. Butter 3. Milk"),
+    Note(
+        2, "Going for a walk", "Today I want to go for a walk in the morning."),
+    Note(3, "Shopping List", "1. Chicken, 2. Butter 3. Milk"),
+    Note(4, "Shopping List", "1. Chicken, 2. Butter 3. Milk"),
   ];
 }

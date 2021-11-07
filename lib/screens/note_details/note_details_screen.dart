@@ -44,6 +44,7 @@ class _NoteDetailsScreenState extends State<NoteDetailsScreen> {
             child: Column(
               children: [
                 TextFormField(
+                  style: Theme.of(context).textTheme.bodyText1,
                   validator: (value) {
                     if (value.isNotEmpty) {
                       return null;
@@ -56,6 +57,7 @@ class _NoteDetailsScreenState extends State<NoteDetailsScreen> {
                       InputDecoration(hintText: "title", labelText: "title *"),
                 ),
                 TextFormField(
+                  style: Theme.of(context).textTheme.bodyText2,
                   validator: (value) {
                     if (value.isNotEmpty) {
                       return null;
@@ -67,13 +69,27 @@ class _NoteDetailsScreenState extends State<NoteDetailsScreen> {
                   decoration: InputDecoration(
                       hintText: "description", labelText: "description *"),
                 ),
+                SizedBox(
+                  height: 20,
+                ),
                 ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
                         String title = titleEditingController.text;
                         String description = descriptionEditingController.text;
                         print(title + description);
+                        /*  Note.notes.where((element) {
+                          if (element.id == note.id) {
+                            print("dfv");
+                            element.description = note.description;
+                            element.title = note.title;
+                          }
+                        });*/ // edit note
                       }
+
+                      Navigator.pop(context);
+                      Navigator.pushReplacementNamed(
+                          context, NotesScreen.routeName);
                     },
                     child: Text("Save"))
               ],

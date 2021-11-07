@@ -16,13 +16,18 @@ class NotesScreen extends StatelessWidget {
       body: ListView.builder(
         itemBuilder: (context, index) {
           return ListTile(
+            // leading: Text(Note.notes[index].id.toString()),
             onTap: () {
               Navigator.pushNamed(context, NoteDetailsScreen.routeName,
                   arguments: Note.notes[index]);
             },
-            title: Text(Note.notes[index].title),
+            title: Text(
+              Note.notes[index].title,
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
             subtitle: Text(
               Note.notes[index].description,
+              style: Theme.of(context).textTheme.bodyText2,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
