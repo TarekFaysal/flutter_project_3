@@ -11,8 +11,8 @@ class NoteDetailsScreen extends StatefulWidget {
 }
 
 class _NoteDetailsScreenState extends State<NoteDetailsScreen> {
-  TextEditingController titleEditingController;
-  TextEditingController descriptionEditingController;
+  TextEditingController titleEditingController = TextEditingController();
+  TextEditingController descriptionEditingController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,6 @@ class _NoteDetailsScreenState extends State<NoteDetailsScreen> {
                         String title = titleEditingController.text;
                         String description = descriptionEditingController.text;
                         print(title + description);
-                        
                       }
                     },
                     child: Text("Save"))
