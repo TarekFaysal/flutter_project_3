@@ -73,6 +73,7 @@ class _NoteDetailsScreenState extends State<NoteDetailsScreen> {
                         String title = titleEditingController.text;
                         String description = descriptionEditingController.text;
                         print(title + description);
+                        
                       }
                     },
                     child: Text("Save"))
