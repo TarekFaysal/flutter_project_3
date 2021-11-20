@@ -53,11 +53,14 @@ class _NoteDetailsScreenState extends State<NoteDetailsScreen> {
                     }
                   },
                   controller: titleEditingController,
-                  decoration:
-                      InputDecoration(hintText: "title", labelText: "title *"),
+                  decoration: InputDecoration(
+                      hintText: "title",
+                      labelText: "title *",
+                      hintStyle: Theme.of(context).textTheme.bodyText2,
+                      labelStyle: Theme.of(context).textTheme.bodyText2),
                 ),
                 TextFormField(
-                  style: Theme.of(context).textTheme.bodyText2,
+                  style: Theme.of(context).textTheme.bodyText1,
                   validator: (value) {
                     if (value.isNotEmpty) {
                       return null;
@@ -67,31 +70,35 @@ class _NoteDetailsScreenState extends State<NoteDetailsScreen> {
                   },
                   controller: descriptionEditingController,
                   decoration: InputDecoration(
-                      hintText: "description", labelText: "description *"),
+                      hintText: "description",
+                      labelText: "description *",
+                      hintStyle: Theme.of(context).textTheme.bodyText2,
+                      labelStyle: Theme.of(context).textTheme.bodyText2),
                 ),
                 SizedBox(
                   height: 20,
                 ),
                 ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState.validate()) {
-                        String title = titleEditingController.text;
-                        String description = descriptionEditingController.text;
-                        print(title + description);
-                        /*  Note.notes.where((element) {
-                          if (element.id == note.id) {
-                            print("dfv");
-                            element.description = note.description;
-                            element.title = note.title;
-                          }
-                        });*/ // edit note
-                      }
+                  onPressed: () {
+                    if (_formKey.currentState.validate()) {
+                      String title = titleEditingController.text;
+                      String description = descriptionEditingController.text;
+                      print(title + description);
 
-                      Navigator.pop(context);
-                      Navigator.pushReplacementNamed(
-                          context, NotesScreen.routeName);
-                    },
-                    child: Text("Save"))
+                      for (Note note1 in Note.notes) {
+                        if (note1.id == note.id) {
+                          note1.title = title;
+                          note1.description = description;
+                        }
+                      }
+                    }
+
+                    Navigator.pop(context);
+                    Navigator.pushReplacementNamed(
+                        context, NotesScreen.routeName);
+                  },
+                  child: Text("Save"),
+                )
               ],
             ),
           ),

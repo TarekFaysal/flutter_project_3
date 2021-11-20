@@ -38,11 +38,14 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
                     }
                   },
                   controller: titleEditingController,
-                  decoration:
-                      InputDecoration(hintText: "title", labelText: "title *"),
+                  decoration: InputDecoration(
+                      hintText: "title",
+                      labelText: "title *",
+                      hintStyle: Theme.of(context).textTheme.bodyText2,
+                      labelStyle: Theme.of(context).textTheme.bodyText2),
                 ),
                 TextFormField(
-                  style: Theme.of(context).textTheme.bodyText2,
+                  style: Theme.of(context).textTheme.bodyText1,
                   validator: (value) {
                     if (value.isNotEmpty) {
                       return null;
@@ -52,7 +55,10 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
                   },
                   controller: descritionEditingController,
                   decoration: InputDecoration(
-                      hintText: "description", labelText: "descrition *"),
+                      hintText: "description",
+                      labelText: "descrition *",
+                      hintStyle: Theme.of(context).textTheme.bodyText2,
+                      labelStyle: Theme.of(context).textTheme.bodyText2),
                 ),
                 SizedBox(
                   height: 20,

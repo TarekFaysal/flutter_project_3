@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project_3/model/note.dart';
 import 'package:flutter_project_3/screens/create_note/create_note_screen.dart';
 import 'package:flutter_project_3/screens/note_details/note_details_screen.dart';
+import 'package:flutter_project_3/theme/custom_theme.dart';
 
 class NotesScreen extends StatelessWidget {
   static const routeName = "/notes";
@@ -12,6 +13,15 @@ class NotesScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Your Notes"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                currentTheme.toggleTheme();
+              },
+              icon: CustomTheme.currentTheme() == ThemeMode.dark
+                  ? Icon(Icons.light_mode)
+                  : Icon(Icons.dark_mode))
+        ],
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
