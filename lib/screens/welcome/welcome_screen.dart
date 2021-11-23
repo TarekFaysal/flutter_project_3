@@ -13,8 +13,9 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   bool _isLoading = false;
-  APIResponse<Article> _apiResponse;
+  APIResponse<Article> _apiResponse = APIResponse<Article>();
   NewsService get newsService => GetIt.I<NewsService>();
+  Article article = Article();
 
   Future<Article> getNews() async {
     // fetch all the data from different api's
@@ -36,16 +37,25 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         appBar: AppBar(
           title: Text("Hello"),
         ),
-        body: Container(
-          height: 20,
-          width: 20,
-          color: Colors.green,
-          child: ElevatedButton(
-            child: Text("hello"),
-            onPressed: () {
-              getNews();
-            },
+        body: Stack(children: [
+          Text(article.title == null ? "Before Api call" : article.title),
+          Center(
+            child: ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue)),
+              child: Text("Get data"),
+              onPressed: () async {
+                article = await getNews();
+              },
+            ),
           ),
-        ));
+          _isLoading
+              ? Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.red,
+                  ),
+                )
+              : Container()
+        ]));
   }
 }

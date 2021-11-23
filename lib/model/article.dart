@@ -1,13 +1,13 @@
 class Article {
-  String sourceId;
-  String sourceName;
-  String author;
-  String title;
-  String description;
-  String url;
-  String urlToImage;
-  String publishedAt;
-  String content;
+  String sourceId,
+      sourceName,
+      author,
+      title,
+      description,
+      url,
+      urlToImage,
+      publishedAt,
+      content;
   Article(
       {this.sourceId,
       this.sourceName,

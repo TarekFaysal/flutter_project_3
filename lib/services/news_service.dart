@@ -6,17 +6,16 @@ import 'package:http/http.dart' as http;
 
 class NewsService {
   Future<APIResponse<Article>> getArticles() {
-    var headers = {
+    var myHeaders = {
       'Content-Type': 'application/json',
       //'authorization': 'Bearer ' + token,
     };
-    return http
-        .get(
-            Uri.parse(
-                'https://newsapi.org/v2/everything?q=tesla&apiKey=302172db63684fb19c778b77964d66fd&sortBy=popularity'),
-            headers: headers)
-        .then((data) {
+    Uri APIURL = Uri.parse(
+        'https://newsapi.org/v2/everything?q=bitcoin&apiKey=302172db63684fb19c778b77964d66fd');
+
+    return http.get(APIURL, headers: myHeaders).then((data) {
       //print(data.body);
+
       if (data.statusCode == 200) {
         final jsonData = json.decode(data.body);
         // print(jsonData);
@@ -34,8 +33,8 @@ class NewsService {
         errorMessage: 'An error occured',
       );
     }).catchError((_) => APIResponse<Article>(
-              error: true,
-              errorMessage: 'An error occured',
-            ));
+          error: true,
+          errorMessage: 'An error occured',
+        ));
   }
 }
