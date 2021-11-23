@@ -1,5 +1,5 @@
 class Article {
-  String sourceId,
+  String? sourceId,
       sourceName,
       author,
       title,

@@ -5,7 +5,7 @@ import 'package:flutter_project_3/services/news_service.dart';
 import 'package:get_it/get_it.dart';
 
 class WelcomeScreen extends StatefulWidget {
-  const WelcomeScreen({Key key}) : super(key: key);
+  const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
   State<WelcomeScreen> createState() => _WelcomeScreenState();
@@ -28,7 +28,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     setState(() {
       _isLoading = false;
     });
-    return _apiResponse.data;
+    return _apiResponse.data!;
   }
 
   @override
@@ -38,7 +38,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           title: Text("Hello"),
         ),
         body: Stack(children: [
-          Text(article.title == null ? "Before Api call" : article.title),
+          Text(article.title == null ? "Before Api call" : article.title!),
           Center(
             child: ElevatedButton(
               style: ButtonStyle(
