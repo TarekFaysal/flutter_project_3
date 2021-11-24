@@ -17,7 +17,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   NewsService get newsService => GetIt.I<NewsService>();
   Article article = Article();
 
-  Future<Article> getNews() async {
+  Future<void> getNews() async {
     // fetch all the data from different api's
     setState(() {
       _isLoading = true;
@@ -25,28 +25,62 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
     _apiResponse = await newsService.getArticles();
 
+    article = _apiResponse.data!;
+
     setState(() {
       _isLoading = false;
     });
-    return _apiResponse.data!;
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getNews();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Hello"),
+          backgroundColor: Colors.white,
+          elevation: 0,
+          title: Text(
+            "Flutter News",
+            style: TextStyle(color: Colors.black),
+          ),
         ),
         body: Stack(children: [
-          Text(article.title == null ? "Before Api call" : article.title!),
-          Center(
-            child: ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.blue)),
-              child: Text("Get data"),
-              onPressed: () async {
-                article = await getNews();
-              },
+          Container(
+            padding: EdgeInsets.all(18),
+            child: Column(
+              children: [
+                article.urlToImage == null
+                    ? Container()
+                    : ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image(
+                          image: NetworkImage(article.urlToImage!),
+                        ),
+                      ),
+                Container(
+                  height: 12,
+                ),
+                Text(
+                  article.title == null ? "" : article.title!,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Container(
+                  height: 8,
+                ),
+                Text(
+                  article.description == null ? "" : article.description!,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
             ),
           ),
           _isLoading
