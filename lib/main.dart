@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project_3/screens/welcome/welcome_screen.dart';
-import 'package:flutter_project_3/services/news_service.dart';
-import 'package:get_it/get_it.dart';
 
-setupLocator() {
-  // to use registerLazySingelton pattern for the api calls
-  GetIt.I.registerLazySingleton(() => NewsService());
-}
+import 'package:flutter_project_3/screens/welcome/welcome_screen.dart';
 
 void main() {
-  setupLocator();
   runApp(MyApp());
 }
 
